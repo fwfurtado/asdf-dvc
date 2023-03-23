@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+
+fail() {
+  echo -e "\e[31mFail:\e[m $*"
+  exit 1
+}
+
+
+download() {
+
+  local install_type="$1"
+  local version="$2"
+  local install_path="$3"
+
+  if [ "$install_type" != "version" ]; then
+    fail "asdf-dvc supports release installs only"
+  fi
+
+  echo "Installing DVC $version..."
+  
+  if [[ -z ${ASDF_DOWNLOAD_PATH} ]]; then
+    pip3 install -q --progress-bar off -t $install_path "dvc[all]==$version" > /dev/null 2>&1 || fail "dvc: fail to download dvc $version"
+  fi
+
+  echo "Installation completed"
+}
+
+
+download "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
