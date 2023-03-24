@@ -43,13 +43,14 @@ install_linux() {
   local download_path="$ASDF_DOWNLOAD_PATH"
   local filename="$download_path/$(filename $version)"
   
-  echo $version
-  echo $install_path
-  
   cd $download_path
   ar x $filename
   tar xf data.tar.gz
-  ls -l
+
+  if is_debug; then
+    ls -l
+  fi
+
   cp -r ./usr/bin $install_path
   cp -r ./usr/lib $install_path
 }

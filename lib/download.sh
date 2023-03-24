@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -eo pipefail
-echo "$(dirname $0)"
 
 GH_REPO="https://github.com/iterative/dvc"
 curl_opt=("-fSL")
