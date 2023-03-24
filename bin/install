@@ -23,7 +23,7 @@ download() {
   debug "content of download path:"
 
   if is_debug; then
-    ls -l $ASDF_DOWNLOAD_PATH
+    ls -l $ASDF_DOWNLOAD_PATH/bin
   fi
 
   if [ "$install_type" != "version" ]; then
@@ -35,6 +35,7 @@ download() {
   if [[ -z ${ASDF_DOWNLOAD_PATH} ]]; then
     pip3 install -q --progress-bar off -t $install_path "dvc[all]==$version" > /dev/null 2>&1 || fail "dvc: fail to download dvc $version"
   else
+    mkdir -p $ASDF_INSTALL_PATH/bin 
     ln -sf $ASDF_DOWNLOAD_PATH/bin/dvc $ASDF_INSTALL_PATH/bin/dvc
   fi
 
