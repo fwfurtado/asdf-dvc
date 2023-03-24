@@ -10,3 +10,4 @@ jobs:
           command: "dvc --version"
         env:
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided
+          ADSF_DVC_DEBUG: "true"
