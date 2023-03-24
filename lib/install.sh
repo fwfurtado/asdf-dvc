@@ -69,8 +69,8 @@ install_darwin() {
     cd $download_path
     xar -xf $filename
     tar xzf Payload
-    cp -r ./usr/local/lib $install_path/lib  
-    ls -sf ../lib/dvc/dvc $install_path/bin/dvc
+    cp -r ./usr/local/lib $install_path/lib      
+    ln -sf ../lib/dvc/dvc $install_path/bin/dvc
   )
 
 }
