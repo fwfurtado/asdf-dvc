@@ -7,16 +7,11 @@ filename() {
   local architecture
   local suffix
 
-  case "$(uname -m)" in
-    x86_64 | x86-64 | x64 | amd64) architecture="amd64" ;;
-    *) ;;
-  esac
+
 
   case "$(uname -s)" in
-    Darwin*) suffix=".pkg" ;;
-    Linux*) suffix="_${architecture}.deb" ;;
-    *) ;;
+    Darwin*) echo "dvc-${version}.pkg" ;;
+    Linux*) echo "dvc_${version}_amd64.deb" ;;
+    *) echo "unsupported" ;;
   esac
-
-  echo "dvc_${version}${suffix}"
 }

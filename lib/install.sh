@@ -43,16 +43,18 @@ install_linux() {
   local download_path="$ASDF_DOWNLOAD_PATH"
   local filename="$download_path/$(filename $version)"
   
-  cd $download_path
-  ar x $filename
-  tar xf data.tar.gz
+  (
+    cd $download_path
+    ar x $filename
+    tar xf data.tar.gz
 
-  if is_debug; then
-    ls -l
-  fi
+    if is_debug; then
+      ls -l
+    fi
 
-  cp -r ./usr/bin $install_path
-  cp -r ./usr/lib $install_path
+    cp -r ./usr/bin $install_path
+    cp -r ./usr/lib $install_path
+  )
 }
 
 
@@ -62,8 +64,11 @@ install_darwin() {
   local download_path="$ASDF_DOWNLOAD_PATH"
   local filename="$download_path/$(filename $version)"
 
-  cd $download_path
-  xar -xf $filename
-  ls -l 
+  (
+    cd $download_path
+    xar -xf $filename
+    tar xzf Payload
+    find usr/ -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+  )
 
 }
