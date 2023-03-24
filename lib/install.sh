@@ -65,10 +65,12 @@ install_darwin() {
   local filename="$download_path/$(filename $version)"
 
   (
+    mkdir -p $install_path/{bin,lib}
     cd $download_path
     xar -xf $filename
     tar xzf Payload
-    find usr/ -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+    cp -r ./usr/local/lib $install_path/lib  
+    ls -sf ../lib/dvc/dvc $install_path/bin/dvc
   )
 
 }
