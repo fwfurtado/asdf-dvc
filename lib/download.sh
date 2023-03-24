@@ -3,7 +3,7 @@
 set -eo pipefail
 
 GH_REPO="https://github.com/iterative/dvc"
-curl_opt=("-fSL")
+curl_opt=("-fsSL")
 
 if test -n "$GITHUB_API_TOKEN"; then
   curl_opt+=("-H" "'Authorization: token $GITHUB_API_TOKEN'")
