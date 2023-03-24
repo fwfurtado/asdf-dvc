@@ -2,29 +2,6 @@
 
 set -eo pipefail
 
-
-fail() {
-  echo -e "\e[31mFail:\e[m $*"
-  rm -rf "$ASDF_DOWLOAD_PATH/{*,.*}"
-
-  exit 1
-}
-
-
-download() {
-
-  local install_type="$1"
-  local version="$2"
-  local install_path="$3"
-
-  if [ "$install_type" != "version" ]; then
-    fail "asdf-dvc supports release installs only"
-  fi
-
-  echo "Downloading DVC $version..."
-  pip3 install -q --progress-bar off -t $install_path "dvc[all]==$version" > /dev/null 2>&1 || fail "dvc: fail to download dvc $version"
-  echo "Download completed"
-}
-
+source "$(dirname "$0")/../lib/lib.sh"
 
 download "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"

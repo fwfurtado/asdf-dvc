@@ -18,7 +18,3 @@ is_debug() {
   return 1
 }
 
-fail() {
-  echo -e "\e[31mFail:\e[m $*"
-  exit 1
-}
