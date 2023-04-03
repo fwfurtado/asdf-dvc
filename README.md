@@ -1,4 +1,4 @@
-# asdf-dvc
+# asdf-dvc [![Build](https://github.com/fwfurtado/asdf-dvc/actions/workflows/test.yaml/badge.svg)](https://github.com/fwfurtado/asdf-dvc/actions/workflows/test.yaml)
 
 DVC plugin for [asdf](https://github.com/asdf-vm/asdf) version manager
 
